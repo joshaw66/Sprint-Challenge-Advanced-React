@@ -1,31 +1,31 @@
 import React from 'react';
 import axios from 'axios';
 
-export class PlayerCard extends React.Component {
-    constructor (props){
+export class Player extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
-            users:[],
+            players: [],
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         axios
-            .get('http://localhost:5000/api/players')
+            .get(`http://localhost:5000/api/players`)
             .then(res => {
                 this.setState({
-                    users: res.data
+                    players: res.data
                 })
             })
         }
-    render(){
+    render() {
         return(
-            <div className = 'mainContainer'>
-                {this.state.users.map(user => 
-                    <li key = {user.id}> (
+            <div>
+                {this.state.players.map(player => 
+                    <li key = {player.id}> (
                         <div className = 'content'>
-                            <h1>Player Namer: {user.name}</h1>
-                            <h2>Results: {user.searches}</h2>
-                            <h3>Player Country: {user.country}</h3>
+                            <h1>Player Namer: {player.name}</h1>
+                            <h2>Results: {player.searches}</h2>
+                            <h2>Player Country: {player.country}</h2>
                         </div>
                     </li>
                 )}
@@ -33,5 +33,3 @@ export class PlayerCard extends React.Component {
         )
     }
 }
-
-export default PlayerCard;
