@@ -1,11 +1,13 @@
 import React from 'react';
 import PlayerCard from './components/PlayerCard';
+import {useDarkMode} from './components/DarkMode';
 import './App.css';
 
-function App() {
+function App () {
   return (
-    <div className="App">
+    <div>
       <PlayerCard/>
+      <Navbar/>
     </div>
   );
 }
