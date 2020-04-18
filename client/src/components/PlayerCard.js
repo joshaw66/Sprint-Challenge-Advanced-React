@@ -8,26 +8,27 @@ export class Player extends React.Component {
             players: [],
         }
     }
+
     componentDidMount() {
-        axios
-            .get(`http://localhost:5000/api/players`)
-            .then(res => {
+        axios.get(`http://localhost:5000/api/players`).then(response => {
+            console.log(response.data);
                 this.setState({
-                    players: res.data
-                })
-            })
+                    players: response.data
+                });
+            });
         }
+
     render() {
         return(
             <div>
                 {this.state.players.map(player => 
-                    <li key = {player.id}> (
+                    <div key = {player.id}>
                         <div className = 'content'>
                             <h1>Player Namer: {player.name}</h1>
                             <h2>Results: {player.searches}</h2>
                             <h2>Player Country: {player.country}</h2>
                         </div>
-                    </li>
+                    </div>
                 )}
             </div>
         )
