@@ -2,36 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { render } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect';
 
-it('renders without crashing', () => {
+
+test('renders header', () => {
+
+  const { getByText } =render(<App />);
+  const header = getByText(/INTERNATIONAL WOMEN'S SOCCER ROSTER/i);
+  expect(header).toBeInTheDocument();
+});
+
+test('if we are rendering player title text', () => {
+
+  const { getByText } =render(<App />);
+  const header = getByText(/Players/i);
+  expect(header).toBeInTheDocument();
+});
+
+test('card shows up', async () => {
+  const {findByText} = render(<App/>)
+  const card = await findByText(/Alex Morgan/i)
+  expect(card).toBeInTheDocument()
+
+})
+
+test('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
-
-// DISPLAY TITLE TEST //
-
-test('Title displayed', () => {
-  const { getByTestId } = rt1.render(<App />);
-  getByTestId(/title/i)
-})
-
-// DISPLAY TOGGLE TEST //
-
-test("displays toggle function", () => {
-  const { getByTestId } = rt1.render(<App />);
-  getByTestId("toggle");
-});
-
-// RENDER TEST //
-
-test('renders without crashing', () => {
-  rt1.render(<App />);
-});
-
-// RENDER HEADER //
-
-test('Renders Header', () => {
-  const { getByText } = render(<App />);
-  const header = getByText(/Soccer Data Return Confirmed/i);
-}) 
