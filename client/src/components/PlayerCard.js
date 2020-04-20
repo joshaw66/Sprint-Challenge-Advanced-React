@@ -1,5 +1,51 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Page = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #f0ead6; 
+    padding-top: 3%;
+`
+
+const Container = styled.div`
+    margin: 1.5%;
+    display: flex;
+    border: solid 2px grey;
+    max-width: 25%;
+    margin-left: 35%;
+    padding-left: 3%;
+    background-color: white;
+    border-radius: 7px;
+`
+
+const Name = styled.h1`
+    display: flex;
+    justify-content: flex-start;
+    color: darkblue;
+`
+
+const Headline = styled.h1`
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    text-decoration: bold;
+    background-color: lightgrey;
+    padding: 3%;
+`
+
+const PlayerSearches = styled.h2`
+    display: flex;
+    justify-content: flex-start;
+    color: lightblue;
+`
+
+const Country = styled.h2`
+    display: flex;
+    justify-content: flex-start;
+    color: grey;
+`
 
 export class Player extends React.Component {
     constructor(props) {
@@ -20,17 +66,21 @@ export class Player extends React.Component {
 
     render() {
         return(
-            <div>
+            <Page>
+                <Headline>
+                    INTERNATIONAL WOMEN'S SOCCER ROSTER 
+                </Headline>
                 {this.state.players.map(player => 
-                    <div key = {player.id}>
+                    <Container key = {player.id}>
                         <div className = 'content'>
-                            <h1>Player Namer: {player.name}</h1>
-                            <h2>Results: {player.searches}</h2>
-                            <h2>Player Country: {player.country}</h2>
+                            <Name>{player.name}</Name>
+                            <PlayerSearches>Search Count: {player.searches}</PlayerSearches>
+                            <Country>{player.country}</Country>
                         </div>
-                    </div>
+                    </Container>
                 )}
-            </div>
+            </Page>
         )
     }
 }
+
